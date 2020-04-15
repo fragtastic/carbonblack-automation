@@ -1,0 +1,18 @@
+class OperatingSystem:
+    linux = ('RHEL', 'CentOS', 'Ubuntu')
+    macos = ('MAC OS')
+    windows_workstation = ('Windows 7', 'Windows 10')
+    windows_server = ('Windows Server', 'Server')
+
+class OrganizationalUnits:
+    DOMAIN_CONTROLLER = 'OU=CHANGE ME'
+
+class policy:
+    '''Reference to policy ID'''
+    STANDARD = 0 # 'Standard'
+    LINUX = 0 # 'Linux'
+    MACOS = 0 # 'MacOS'
+    WINDOWS_WORKSTATION = 0 # 'Windows Workstation'
+    WINDOWS_SERVER = 0 # 'Windows Server'
+    DOMAIN_CONTROLLERS = 0 # Domain Controller
+    UNKNOWN = 0 # 'Unknown'
