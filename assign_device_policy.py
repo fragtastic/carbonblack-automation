@@ -27,7 +27,10 @@ def assign_device_by_ad(device, metadict):
 def assign_device_by_os(device):
     oldPolicy = device.policy_id
     newPolicy = device.policy_id
-    if device.os_version.startswith(mappings.OperatingSystem.linux):
+    if not device.os_version:
+        logging.warning(f'Device {device.id} OS not present.')
+        newPolicy = mappings.policy.UNKNOWN # 'Unknown'
+    elif device.os_version.startswith(mappings.OperatingSystem.linux):
         newPolicy = mappings.policy.LINUX # 'Linux'
     elif device.os_version.startswith(mappings.OperatingSystem.macos):
         newPolicy = mappings.policy.MACOS # 'MacOS'
