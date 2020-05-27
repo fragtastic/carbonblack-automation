@@ -53,13 +53,16 @@ def get_meta_dict(device):
 def run_assign_devices(policy_ids=[mappings.policy.STANDARD, mappings.policy.UNKNOWN]):
     cbapi = CbPSCBaseAPI(profile='psc')
     devices = cbapi.select(Device).set_status(['REGISTERED']).set_policy_ids(policy_ids)
-    logging.info(f'Number of devices found {len(devices)}')
     devices_assigned = 0
+    devices_found = 0
     for device in devices:
+        devices_found += 1
         try:
             devices_assigned += assign_device(device)
         except Exception as e:
             logging.error(e)
+    logging.info(f'Number of devices in query {len(devices)}')
+    logging.info(f'Number of devices found {devices_found}')
     logging.info(f'Number of devices assigned {devices_assigned}')
 
 if __name__ == '__main__':
